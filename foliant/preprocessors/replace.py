@@ -1,6 +1,6 @@
 '''
 Preprocessor for Foliant documentation authoring tool.
-Makes markdown tables multiline before pandoc processing.
+Replaces text by dictionary.
 '''
 
 
