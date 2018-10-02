@@ -42,11 +42,11 @@ class Preprocessor(BasePreprocessor):
             for i, string in enumerate(file_data):
                 if 'words' in replace_dictionary:
                     for word in replace_dictionary['words']:
-                        if word in string:
+                        if word in string and not '![' in string:
                             file_data[i] = string.replace(word, replace_dictionary['words'][word])
                 if 'regexs' in replace_dictionary:
                     for regex in replace_dictionary['regexs']:
-                        if re.search(regex, string):
+                        if re.search(regex, string) and not '![' in string:
                             file_data[i] = re.sub(regex, replace_dictionary['regexs'][regex], string)
 
             with open(markdown_file_path, 'w', encoding="utf-8") as file_to_write:

@@ -1,6 +1,6 @@
 # Replace text for Foliant
 
-Replace preprocessor reads the dictionary (yaml format) placed in foliant project folder and changes one word to another.
+Replace preprocessor reads the dictionary (yaml format) placed in foliant project folder and changes one word to another in created document.
 
 
 ## Installation
