@@ -23,7 +23,7 @@ The preprocessor has only one option:
 
 ```yaml
 preprocessors:
-  - multilinetables:
+  - replace:
       dictionary_filename: replace_dictionary.yml
 ```
 
