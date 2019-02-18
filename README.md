@@ -19,20 +19,25 @@ preprocessors:
   - replace
 ```
 
-The preprocessor has only one option:
+The preprocessor has two options (default values stated):
 
 ```yaml
 preprocessors:
   - replace:
       dictionary_filename: replace_dictionary.yml
+      with_confirmation: false
+
 ```
 
 `dictionary_filename`
 :   File in foliant project folder with dictionary in it (*replace_dictionary.yml* by default).
 
+`with_confirmation`
+:   if `true` you will be prompted to confirm any changes.
+
 ### Dictionary format
 
-Dictionary stores data in yaml format. It has two sections — with words and with regular expressions. For example:
+Dictionary stores data in yaml format. It has two sections — with words and with regular expressions. You can pass the lambda function in `regexs` section. For example:
 
 ```yaml
 words:
@@ -41,6 +46,7 @@ words:
   vod: VoD
 regexs:
   '!\w*!': ''
+  '\. *(\w)': 'lambda x: x.group(0).upper()'
 ```
 
 
