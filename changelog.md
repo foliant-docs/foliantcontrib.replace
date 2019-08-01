@@ -1,3 +1,7 @@
+# 1.0.3
+
+-   Fixed issue with PyYAML deprecated loader.
+
 # 1.0.2
 
 -   Now it's possible to pass the lambda function from dictionary file.

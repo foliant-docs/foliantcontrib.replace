@@ -6,7 +6,7 @@ Replaces text by dictionary.
 
 import re
 from pathlib import Path
-from yaml import load
+from yaml import load, Loader
 
 from foliant.preprocessors.base import BasePreprocessor
 
@@ -33,7 +33,7 @@ class Preprocessor(BasePreprocessor):
         self.logger.info('Applying preprocessor')
 
         with open(self._dictionary_filename, encoding='utf8') as dict_file:
-            replace_dictionary = load(dict_file)
+            replace_dictionary = load(dict_file, Loader)
 
         for markdown_file_path in self.working_dir.rglob('*.md'):
             self.logger.debug(f'Processing Markdown file: {markdown_file_path}')
