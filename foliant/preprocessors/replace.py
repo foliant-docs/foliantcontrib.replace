@@ -44,9 +44,13 @@ class Preprocessor(BasePreprocessor):
             for i, string in enumerate(file_data):
                 if 'words' in replace_dictionary:
                     for word in replace_dictionary['words']:
-                        if word in string and not '![' in string:
-                            if self._with_confirmation:
+                        if word in string:
+                            if '](' in string:
+                                text_part = string.split('[')[1].split('](')[0]
+                                new_string = re.sub('(.*\[)(.*)(]\(.*)', '\g<1>' + text_part.replace(word, replace_dictionary['words'][word]) + '\g<3>', string)
+                            else:
                                 new_string = string.replace(word, replace_dictionary['words'][word])
+                            if self._with_confirmation:
                                 user_answer = ''
                                 while user_answer not in ('y','n'):
                                     user_answer = input(f'\nReplace\n"{string.strip()}" with\n"{new_string.strip()}"?\nEnter y or n:')
@@ -54,16 +58,23 @@ class Preprocessor(BasePreprocessor):
                                         string = new_string
                                         file_data[i] = new_string
                             else:
-                                string = string.replace(word, replace_dictionary['words'][word])
-                                file_data[i] = string
+                                file_data[i] = new_string
                 if 'regexs' in replace_dictionary:
                     for regex in replace_dictionary['regexs']:
-                        if re.search(regex, string) and not '![' in string:
-                            if self._with_confirmation:
-                                if 'lambda' in replace_dictionary['regexs'][regex]:
+                        if re.search(regex, string):
+                            if 'lambda' in replace_dictionary['regexs'][regex]:
+                                if '](' in string:
+                                    text_part = string.split('[')[1].split('](')[0]
+                                    new_string = re.sub('(.*\[)(.*)(]\(.*)', '\g<1>' + re.sub(regex, eval(replace_dictionary['regexs'][regex]), text_part) + '\g<3>', string)
+                                else:
                                     new_string = re.sub(regex, eval(replace_dictionary['regexs'][regex]), string)
+                            else:
+                                if '](' in string:
+                                    text_part = string.split('[')[1].split('](')[0]
+                                    new_string = re.sub('(.*\[)(.*)(]\(.*)', '\g<1>' + re.sub(regex, replace_dictionary['regexs'][regex], text_part) + '\g<3>', string)
                                 else:
                                     new_string = re.sub(regex, replace_dictionary['regexs'][regex], string)
+                            if self._with_confirmation:
                                 user_answer = ''
                                 while user_answer not in ('y','n'):
                                     user_answer = input(f'\nReplace\n"{string.strip()}" with\n"{new_string.strip()}"?\nEnter y or n:')
@@ -71,11 +82,7 @@ class Preprocessor(BasePreprocessor):
                                         string = new_string
                                         file_data[i] = new_string
                             else:
-                                if 'lambda' in replace_dictionary['regexs'][regex]:
-                                    string = re.sub(regex, eval(replace_dictionary['regexs'][regex]), string)
-                                else:
-                                    string = re.sub(regex, replace_dictionary['regexs'][regex], string)
-                                file_data[i] = string
+                                file_data[i] = new_string
 
             with open(markdown_file_path, 'w', encoding="utf-8") as file_to_write:
                 for string in file_data:

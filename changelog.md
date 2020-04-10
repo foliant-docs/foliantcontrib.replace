@@ -1,3 +1,7 @@
+# 1.0.4
+
+-   Replace in links and images fixed.
+
 # 1.0.3
 
 -   Fixed issue with PyYAML deprecated loader.
