@@ -1,3 +1,7 @@
+# 1.0.5
+
+-   Bug fixed with several replaceable items in one string.
+
 # 1.0.4
 
 -   Replace in links and images fixed.
