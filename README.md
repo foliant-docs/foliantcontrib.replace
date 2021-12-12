@@ -1,3 +1,5 @@
+[![](https://img.shields.io/pypi/v/foliantcontrib.replace.svg)](https://pypi.org/project/foliantcontrib.replace/) [![](https://img.shields.io/github/v/tag/foliant-docs/foliantcontrib.replace.svg?label=GitHub)](https://github.com/foliant-docs/foliantcontrib.replace)
+
 # Replace text for Foliant
 
 Preprocessor for simple search and replace in Markdown sources with support of regular expressions.
