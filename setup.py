@@ -16,7 +16,7 @@ setup(
     description=SHORT_DESCRIPTION,
     long_description=LONG_DESCRIPTION,
     long_description_content_type='text/markdown',
-    version='1.0.5',
+    version='2.0.0',
     author='Anton Bukhtiyarov',
     author_email='apkraft@gmail.com',
     url='https://github.com/foliant-docs/foliantcontrib.replace',
@@ -25,7 +25,7 @@ setup(
     platforms='any',
     install_requires=[
         'foliant>=1.0.8',
-        'PyYAML'
+        'foliantcontrib.utils>=1.0.3',
     ],
     classifiers=[
         "Development Status :: 5 - Production/Stable",

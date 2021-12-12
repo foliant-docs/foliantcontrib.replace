@@ -1,3 +1,7 @@
+# 2.0.0
+
+-   Preprocessor rewritten.
+
 # 1.0.5
 
 -   Bug fixed with several replaceable items in one string.
