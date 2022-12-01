@@ -50,6 +50,13 @@ class Preprocessor(BasePreprocessorExt):
             processed = processed.replace(pattern, replacement)
         for pattern, replacement in self._re_dictionary.items():
             self.logger.debug(f'replacing {pattern=} with {replacement=}')
+            matches = pattern.finditer(processed, re.MULTILINE)
+            for matchNum, match in enumerate(matches, start=1):
+                self.logger.debug("Match {matchNum} was found at {start}-{end}: {match}".format(matchNum=matchNum,
+                                                                                                start=match.start(),
+                                                                                                end=match.end(),
+                                                                                                match=match.group()))
+
             processed = pattern.sub(replacement, processed)
         return processed
 
