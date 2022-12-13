@@ -53,3 +53,13 @@ preprocessors:
         '!\[\]\((.+?)\)': '![Figure](\1)'
 
 ```
+
+You can also apply a sequence of regex substitions. Like case-insensitive link insertion as shown in the example below:
+
+```yaml
+preprocessors:
+  - replace:
+      re_dictionary:
+        '`(?i)(wikipedia)`': '[\1](https://www.wikipedia.org/)'
+        '`(?i)(github)`': '[\1](https://github.com/)'
+```
